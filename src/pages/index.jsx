@@ -1,90 +1,65 @@
-import { useEffect, useState } from "react";
 import 'bootstrap/dist/css/bootstrap.min.css';
-// import BookmarkIcon from '@mui/icons-material/Bookmark';
-// import IconButton from '@mui/material/IconButton';
-import { Navbar } from "../../components/Navbar";
+import TextField from '@mui/material/TextField';
+import Button from '@mui/material/Button';
 import Link from "next/link";
+import { useState } from 'react';
+import { useRouter } from 'next/router';
+import axios from "axios";
 
-export default function Home() {
-    const [movieList, setMovieList] = useState([]);
-    const [trendingList, setTrendingList] = useState([]);
-    const [tvList, setTvList] = useState([]);
-    
-    const getMovie = () => {
-        fetch("https://api.themoviedb.org/3/discover/movie?api_key=2940b231da9ae329bd26aca2aefa5f2f")
-            .then(res => res.json())
-            .then(json => setMovieList(json.results));
-    }
-    const getTrending = () => {
-        fetch("https://api.themoviedb.org/3/trending/all/day?api_key=2940b231da9ae329bd26aca2aefa5f2f")
-            .then(res => res.json())
-            .then(json => setTrendingList(json.results));
-    }
-    const getTv = () => {
-        fetch("https://api.themoviedb.org/3/discover/tv?api_key=2940b231da9ae329bd26aca2aefa5f2f")
-            .then(res => res.json())
-            .then(json => setTvList(json.results));
+export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const router = useRouter();
+
+  async function login(e) {
+    e.preventDefault();
+
+    if (!email || !password) {
+      alert('Please fill in all fields.');
+      return;
     }
 
-    useEffect(() => {
-        getMovie();
-        getTv();
-        getTrending();
-    }, [])
+    try {
+      await axios.post("http://localhost:8000/", {
+        email, password
+      })
+        .then(res => {
+          if (res.data == "exist") {
+            router.push("/Home")
+          }
+          else if (res.data == "notexist") {
+            alert("User have not sign up")
+          }
+          else if (res.data == "incorrectpassword") {
+            alert("Password is not correct")
+          }
 
-    return (
-        <div>
-            <Navbar/>
-            <h1 style={{marginTop:'70px'}}>Trending</h1>
-            <div className="section-div">
-                {trendingList.map((trending) => (
-                    <div className="content-div"> 
-                         <Link href={`/${trending.id}`}><img src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
-                        {/* <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large">
-                            <BookmarkIcon />
-                        </IconButton> */}
-                        <div className="content-div-text">
-                           <p> {trending.original_title}
-                            {trending.original_name}</p> 
-                            {trending.release_date}  {trending.first_air_date} <span style={{ marginLeft: '60px' }}></span> {trending.media_type.toUpperCase()} <span style={{ marginLeft: '60px' }}></span> {trending.original_language.toUpperCase()}
-                        </div>
-                    </div>
-                ))}
-            </div>
+        })
+        .catch(e => {
+          alert("wrong details")
+          console.log(e);
+        })
 
-            <h1>Movies</h1>
-            <div className="section-div">
-                {movieList.map((movie) => (
-                    <div className="content-div">
-                        <Link href={`/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" /></Link>
-                        {/* <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large">
-                            <BookmarkIcon />
-                        </IconButton> */}
-                        <div className="content-div-text">
-                            <p>{movie.original_title} </p>
-                            {movie.release_date}<span style={{ marginLeft: '60px' }}></span> MOVIE<span style={{ marginLeft: '60px' }}></span> {movie.original_language.toUpperCase()}
-                        </div>
-                    </div>
-                ))}
-            </div>
+    }
+    catch (e) {
+      console.log(e);
+    }
 
-            <h1>TV</h1>
-            <div className="section-div">
-                {tvList.map((tv) => (
-                    <div className="content-div">
-                        <Link href={`/${tv.id}`}><img src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" /></Link>
-                        {/* <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large">
-                            <BookmarkIcon />
-                        </IconButton> */}
-                        <div className="content-div-text">
-                        <p>{tv.original_name} </p>
-                            {tv.first_air_date}<span style={{ marginLeft: '80px' }}></span> TV<span style={{ marginLeft: '80px' }}></span> {tv.original_language.toUpperCase()}
-                        </div>
-                    </div>
-                ))}
-            </div>
+  }
 
+  return (
+    <div className="main-div" style={{ display: 'flex', flexDirection: 'column' }}>
+      
+      <form method='post' className="login-main-div">
+        <h1>Login </h1>
+        <TextField value={email} id="standard-basic" label="Email" variant="standard" margin="normal" onChange={(event) => { setEmail(event.target.value) }} />
+        <TextField value={password} id="standard-password-input" label="Password" type="password" autoComplete="current-password" variant="standard" margin="normal" onChange={(event) => { setPassword(event.target.value) }} />
 
+        <Button onClick={login} variant="contained" style={{ marginTop: '30px' }}>LogIn</Button>
+        <div className="link-div">
+          Doesn't Have An Account? <Link href='/SignUp'>SignUp</Link>
         </div>
-    )
+      </form>
+    </div>
+  )
 }
