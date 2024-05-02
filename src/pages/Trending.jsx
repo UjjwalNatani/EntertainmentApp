@@ -3,6 +3,7 @@ import Link from "next/link";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import IconButton from '@mui/material/IconButton';
 import { Navbar } from "../../components/Navbar";
+import Image from "next/image";
 
 export default function Trending() {
     const [trendingList, setTrendingList] = useState([]);
@@ -22,9 +23,9 @@ export default function Trending() {
             <Navbar />
             <h1 style={{ textAlign: 'center', paddingTop: '10px' }}>Trending</h1>
             <div className="movie-section-div">
-                {trendingList.map((trending) => (
-                    <div className="movie-content-div">
-                        <Link href={`/${trending.id}`}><img src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
+                {trendingList.map((trending, index) => (
+                    <div key={index} className="movie-content-div">
+                        <Link href={`/${trending.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
                         <IconButton onClick={() => {
                             // Local storage handling
                             let bookmarked;

@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import Link from "next/link";
 import IconButton from '@mui/material/IconButton';
 import BookmarkRemoveIcon from '@mui/icons-material/BookmarkRemove';
+import Image from "next/image";
 
 export default function Bookmarks() {
     const [movieList, setMovieList] = useState([]);
@@ -56,7 +57,7 @@ export default function Bookmarks() {
                     <div className="movie-content-div" key={index}>
                         {data && (
                             <>
-                                <Link href={`/${data.id}`}><img src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" /></Link>
+                                <Link href={`/${data.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" /></Link>
                                 <a href=''>
                                     <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                                         const bookmarked = JSON.parse(localStorage.getItem('bookmark'));
@@ -71,23 +72,23 @@ export default function Bookmarks() {
                                         {data.release_date}{data.first_air_date}
                                         <span style={{ marginLeft: '70px' }}></span>
 
-                                        {trendingList.map((trending) => {
+                                        {trendingList.map((trending, index) => {
                                             if (data.id === trending.id) {
                                                 conditionSatisfied = true;
-                                                return <div>{trending.media_type.toUpperCase() == "TV" ? <div><span style={{ marginLeft: '15px' }}></span>TV<span style={{ marginLeft: '15px' }}></span></div> : trending.media_type.toUpperCase()}</div>;
+                                                return <div key={index}>{trending.media_type.toUpperCase() == "TV" ? <div><span style={{ marginLeft: '15px' }}></span>TV<span style={{ marginLeft: '15px' }}></span></div> : trending.media_type.toUpperCase()}</div>;
                                             }
                                             return null;
                                         })}
 
                                         {!conditionSatisfied && (
                                             <div>
-                                                {movieList.map((movie) => (
-                                                    <div>
+                                                {movieList.map((movie, index) => (
+                                                    <div key={index}>
                                                         {data.id === movie.id ? <div>Movie</div> : null}
                                                     </div>
                                                 ))}
-                                                {tvList.map((tv) => (
-                                                    <div>
+                                                {tvList.map((tv, index) => (
+                                                    <div key={index}>
                                                         {data.id === tv.id ? <div><span style={{ marginLeft: '15px' }}></span>TV<span style={{ marginLeft: '15px' }}></span></div> : null}
                                                     </div>
                                                 ))}

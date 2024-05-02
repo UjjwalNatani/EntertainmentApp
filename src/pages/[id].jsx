@@ -1,6 +1,7 @@
 import { useRouter } from "next/router";
 import { useState, useEffect } from "react";
 import { Navbar } from "../../components/Navbar";
+import Image from "next/image";
 
 export default function Details() {
     const [movieList, setMovieList] = useState([]);
@@ -44,7 +45,7 @@ export default function Details() {
                 <div className="id-sub-div">
                     <div className="sub-left">
 
-                        <img style={{ borderRadius: '60px' }} src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`} alt="" height='500px' />
+                        <Image style={{ borderRadius: '60px' }} src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`} alt="" height='500px' />
                     </div>
                     <div className="sub-right">
 

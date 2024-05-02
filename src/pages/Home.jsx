@@ -3,6 +3,7 @@ import BookmarkIcon from '@mui/icons-material/Bookmark';
 import IconButton from '@mui/material/IconButton';
 import { Navbar } from "../../components/Navbar";
 import Link from "next/link";
+import Image from "next/image";
 
 export default function Home() {
     const [movieList, setMovieList] = useState([]);
@@ -36,9 +37,9 @@ export default function Home() {
             <Navbar />
            <Link style={{textDecoration:'none'}} href='/Trending'> <h1 style={{  marginLeft:'20px' }}>Trending </h1>  </Link>
             <div className="section-div">
-                {trendingList.map((trending) => (
-                    <div className="content-div">
-                        <Link href={`/${trending.id}`}><img src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
+                {trendingList.map((trending, index) => (
+                    <div key={index} className="content-div">
+                        <Link href={`/${trending.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
                         <IconButton onClick={() => {
                             // Local storage handling
                             let bookmarked;
@@ -71,9 +72,9 @@ export default function Home() {
 
            <Link style={{textDecoration:'none'}} href='/Movies'> <h1 style={{marginLeft:'20px'}}>Movies</h1></Link>
             <div className="section-div">
-                {movieList.map((movie) => (
-                    <div className="content-div">
-                        <Link href={`/${movie.id}`}><img src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" /></Link>
+                {movieList.map((movie, index) => (
+                    <div key={index} className="content-div">
+                        <Link href={`/${movie.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" /></Link>
                         <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                             // Local storage handling
                             let bookmarked;
@@ -105,9 +106,9 @@ export default function Home() {
 
            <Link style={{textDecoration:'none'}} href='/TV'> <h1 style={{marginLeft:'20px'}}>TV</h1></Link>
             <div className="section-div">
-                {tvList.map((tv) => (
-                    <div className="content-div">
-                        <Link href={`/${tv.id}`}><img src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" /></Link>
+                {tvList.map((tv, index) => (
+                    <div key={index} className="content-div">
+                        <Link href={`/${tv.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" /></Link>
                         <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                             // Local storage handling
                             let bookmarked;

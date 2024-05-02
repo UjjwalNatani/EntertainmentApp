@@ -58,7 +58,7 @@ export default function Login() {
 
         <Button onClick={login} variant="contained" style={{ marginTop: '30px' }}>LogIn</Button>
         <div className="link-div">
-          Doesn't Have An Account? <Link href='/SignUp'>SignUp</Link>
+          Does not Have An Account? <Link href='/SignUp'>SignUp</Link>
         </div>
       </form>
     </div>
