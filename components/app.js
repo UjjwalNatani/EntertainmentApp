@@ -6,6 +6,8 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
+const PORT = process.env.PORT || 8000;
+
 app.get("/", cors(), (req, res) => {
 
 })
@@ -58,6 +60,6 @@ app.post("/SignUp", async (req, res) => {
     }
 })
 
-app.listen(8000, () => {
-    console.log("port connected");
+app.listen(PORT, () => {
+    console.log(`Server connected at Port:${PORT}`);
 })

@@ -10,6 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const DOMAIN = process.env.DOMAIN || "http://localhost:8000/";
 
   async function login(e) {
     e.preventDefault();
@@ -20,7 +21,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post("http://localhost:8000/", {
+      await axios.post(`${DOMAIN}`, {
         email, password
       })
         .then(res => {

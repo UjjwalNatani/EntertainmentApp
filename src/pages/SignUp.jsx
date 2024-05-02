@@ -11,6 +11,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
+  const DOMAIN = process.env.DOMAIN || "http://localhost:8000/";
 
   async function signUp(e) {
     e.preventDefault();
@@ -21,7 +22,7 @@ export default function SignUp() {
     }
 
     try {
-      await axios.post("http://localhost:8000/SignUp", {
+      await axios.post(`${DOMAIN}SignUp`, {
         name, email, password
       })
         .then(res => {
