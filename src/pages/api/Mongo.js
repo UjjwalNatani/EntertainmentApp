@@ -1,31 +1,16 @@
-// const MONGO_URL = process.env.MONGO_URL
-// const mongoose = require("mongoose")
-// mongoose.connect(MONGO_URL, {
-//     useNewUrlParser: true,
-//     useUnifiedTopology: true
-// })
-//     // mongoose.connect("mongodb://localhost:27017/entertainment_app")
-//     .then(() => {
-//         console.log("mongodb connected");
-//     })
-//     .catch((e) => {
-//         console.log('failed', e);
-//     })
-
+const MONGO_URL = process.env.MONGO_URL
 const mongoose = require("mongoose")
-
-const MONGO_URL = process.env.MONGO_URL // Access from Vercel environment variables
-
 mongoose.connect(MONGO_URL, {
-  useNewUrlParser: true,
-  useUnifiedTopology: true
+    useNewUrlParser: true,
+    useUnifiedTopology: true
 })
-  .then(() => {
-    console.log("mongodb connected");
-  })
-  .catch((e) => {
-    console.log('failed', e);
-  })
+    // mongoose.connect("mongodb://localhost:27017/entertainment_app")
+    .then(() => {
+        console.log("mongodb connected");
+    })
+    .catch((e) => {
+        console.log('failed', e);
+    })
 
 const newSchema = new mongoose.Schema({
     name: {
