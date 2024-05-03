@@ -34,6 +34,9 @@ export default function Login() {
           else if (res.data == "incorrectpassword") {
             alert("Password is not correct")
           }
+          else if (res.data == "fail") {
+            alert("Something is fishy")
+          }
 
         })
         .catch(e => {
