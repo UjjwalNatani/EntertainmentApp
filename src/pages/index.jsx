@@ -10,7 +10,7 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const DOMAIN = process.env.DOMAIN || "http://localhost:8000/";
+  const DOMAIN = process.env.DOMAIN
   const PORT = process.env.PORT
 
   async function login(e) {
@@ -22,57 +22,34 @@ export default function Login() {
     }
 
     try {
-      // await axios.post("http://localhost:8000", {
-      //   email, password
-      // })
-      //   .then(res => {
-      //     if (res.data == "exist") {
-      //       router.push("/Home")
-      //     }
-      //     else if (res.data == "notexist") {
-      //       alert("User have not sign up")
-      //     }
-      //     else if (res.data == "incorrectpassword") {
-      //       alert("Password is not correct")
-      //     }
-      //     else if (res.data == "fail") {
-      //       alert("Something is fishy")
-      //     }
+      await axios.post(`${DOMAIN}`, {
+        email, password
+      })
+        .then(res => {
+          if (res.data == "exist") {
+            router.push("/Home")
+          }
+          else if (res.data == "notexist") {
+            alert("User have not sign up")
+          }
+          else if (res.data == "incorrectpassword") {
+            alert("Password is not correct")
+          }
+          else if (res.data == "fail") {
+            alert("Something is fishy")
+          }
 
-      //   })
-      //   .catch(e => {
-      //     alert(DOMAIN)
-      //     alert(PORT)
-      //     alert(e);
-      //     console.log(e);
-      //   })
-
-      const response = await fetch(`${DOMAIN}`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password })
-      });
-  
-      if (!response.ok) {
-        throw new Error(`HTTP error! status: ${response.status}`);
-      }
-  
-      const data = await response.json();
-  
-      if (data === "exist") {
-        router.push("/Home");
-      } else if (data === "notexist") {
-        alert("User has not signed up");
-      } else if (data === "incorrectpassword") {
-        alert("Password is not correct");
-      } else if (data === "fail") {
-        alert("Something is fishy");
-      }
+        })
+        .catch(e => {
+          alert(DOMAIN)
+          alert(PORT)
+          alert(e);
+          console.log(e);
+        })
 
     }
     catch (e) {
       console.log(e);
-      alert(e)
     }
 
   }
