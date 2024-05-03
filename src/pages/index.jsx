@@ -40,7 +40,7 @@ export default function Login() {
 
         })
         .catch(e => {
-          alert("wrong details")
+          alert("wrong details", `${DOMAIN}`, )
           console.log(e);
         })
 
