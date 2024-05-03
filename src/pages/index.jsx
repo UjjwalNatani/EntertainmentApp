@@ -11,6 +11,7 @@ export default function Login() {
   const [password, setPassword] = useState('');
   const router = useRouter();
   const DOMAIN = process.env.DOMAIN || "http://localhost:8000/";
+  const PORT = process.env.PORT || 8000;
 
   async function login(e) {
     e.preventDefault();
@@ -40,7 +41,8 @@ export default function Login() {
 
         })
         .catch(e => {
-          alert("wrong details", `${DOMAIN}`, )
+          alert(`${DOMAIN}`)
+          alert(PORT)
           console.log(e);
         })
 
