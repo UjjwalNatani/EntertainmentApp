@@ -11,7 +11,7 @@ export default function SignUp() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const DOMAIN = process.env.DOMAIN;
+  const DOMAIN = process.env.DOMAIN || "http://localhost:3000/"
 
   async function signUp(e) {
     e.preventDefault();
