@@ -6,7 +6,7 @@ app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 app.use(cors())
 
-const PORT = 10001 || 3000;
+const PORT = 10000 || 3000;
 
 app.get("/", cors(), (req, res) => {
 
