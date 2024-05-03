@@ -22,7 +22,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post(`${DOMAIN}`, {
+      await axios.post("https://entertainment-app-ruddy.vercel.app/", {
         email, password
       })
         .then(res => {
