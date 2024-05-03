@@ -10,8 +10,8 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const DOMAIN = process.env.DOMAIN || "http://localhost:8000/";
-  const PORT = process.env.PORT || 8000;
+  const DOMAIN = process.env.DOMAIN
+  const PORT = process.env.PORT
 
   async function login(e) {
     e.preventDefault();
@@ -22,7 +22,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post(`${DOMAIN}`, {
+      await axios.post(DOMAIN, {
         email, password
       })
         .then(res => {
@@ -41,7 +41,7 @@ export default function Login() {
 
         })
         .catch(e => {
-          alert(`${DOMAIN}`)
+          alert(DOMAIN)
           alert(PORT)
           console.log(e);
         })

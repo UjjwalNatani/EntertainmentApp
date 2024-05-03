@@ -1,5 +1,4 @@
-const MONGO_URL = process.env.MONGO_URL || "mongodb+srv://ujjwalnatani10:Ugnatani@cluster0.ijnxryd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0" 
-
+const MONGO_URL = process.env.MONGO_URL
 const mongoose = require("mongoose")
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
