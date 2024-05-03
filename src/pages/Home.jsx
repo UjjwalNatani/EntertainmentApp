@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import BookmarkIcon from '@mui/icons-material/Bookmark';
 import IconButton from '@mui/material/IconButton';
-import { Navbar } from "../../components/Navbar";
+import { Navbar } from "./api/Navbar";
 import Link from "next/link";
 import Image from "next/image";
 

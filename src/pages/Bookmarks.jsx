@@ -1,4 +1,4 @@
-import { Navbar } from "../../components/Navbar"
+import { Navbar } from "./api/Navbar"
 import { useEffect, useState } from "react";
 import Link from "next/link";
 import IconButton from '@mui/material/IconButton';

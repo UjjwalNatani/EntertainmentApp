@@ -22,7 +22,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post(DOMAIN, {
+      await axios.post(`${DOMAIN}`, {
         email, password
       })
         .then(res => {
