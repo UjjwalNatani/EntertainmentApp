@@ -43,6 +43,7 @@ export default function Login() {
         .catch(e => {
           alert(DOMAIN)
           alert(PORT)
+          alert(e);
           console.log(e);
         })
 
