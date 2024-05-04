@@ -40,8 +40,10 @@ export default function Bookmarks() {
 
         if (typeof window !== 'undefined') {
             var bookmarked = JSON.parse(localStorage.getItem('bookmark'));
-            const filteredData = bookmarked.map(id => uniqueObjectsArray.find(item => item.id === id));
-            setFilteredData(filteredData);
+            if (bookmarked) {
+                const filteredData = bookmarked.map(id => uniqueObjectsArray.find(item => item.id === id));
+                setFilteredData(filteredData);
+            }
         }
     }, [movieList, trendingList, tvList]);
     let conditionSatisfied = false;
