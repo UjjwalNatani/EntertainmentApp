@@ -10,9 +10,6 @@ export default function Login() {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const router = useRouter();
-  const PORT = process.env.PORT || 3000;
-  const DOMAIN = process.env.DOMAIN  
-  const URL = `${DOMAIN}:${PORT}`;
 
   async function login(e) {
     e.preventDefault();
@@ -23,7 +20,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post("https://main--entertainment-app-live.netlify.app/", {
+      await axios.post("https://entertainmentapp-1.onrender.com/", {
         email, password
       })
         .then(res => {
@@ -42,16 +39,12 @@ export default function Login() {
 
         })
         .catch(e => {
-          alert(DOMAIN)
-          alert(PORT)
-          alert(URL)
           alert(e);
-          console.log(e);
         })
 
     }
     catch (e) {
-      console.log(e);
+      alert(e);
     }
 
   }
