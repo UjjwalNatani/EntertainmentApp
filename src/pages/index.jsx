@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post("https://entertainmentapp-1.onrender.com/", {
+      await axios.post("https://main--entertainment-app-live.netlify.app/", {
         email, password
       })
         .then(res => {
