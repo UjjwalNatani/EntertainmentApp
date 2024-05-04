@@ -57,7 +57,7 @@ export default function Bookmarks() {
                     <div className="movie-content-div" key={index}>
                         {data && (
                             <>
-                                <Link href={`/${data.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" /></Link>
+                                <Link href={`/${data.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${data.poster_path}`} alt="" height={400} width={400} /></Link>
                                 <a href=''>
                                     <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                                         const bookmarked = JSON.parse(localStorage.getItem('bookmark'));

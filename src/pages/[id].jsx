@@ -44,8 +44,7 @@ export default function Details() {
             {selectedItem && (
                 <div className="id-sub-div">
                     <div className="sub-left">
-
-                        <Image style={{ borderRadius: '60px' }} src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`} alt="" height='500px' />
+                        <Image style={{ borderRadius: '60px' }} src={`https://image.tmdb.org/t/p/w500/${selectedItem.poster_path}`} alt="" height={400} width={400} />
                     </div>
                     <div className="sub-right">
 

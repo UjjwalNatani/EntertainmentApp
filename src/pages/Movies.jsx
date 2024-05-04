@@ -25,7 +25,7 @@ export default function Movies() {
             <div className="movie-section-div">
                 {movieList.map((movie, index) => (
                     <div key={index} className="movie-content-div">
-                        <Link href={`/${movie.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" /></Link>
+                        <Link href={`/${movie.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${movie.poster_path}`} alt="" height={400} width={400} /></Link>
                         <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                             // Local storage handling
                             let bookmarked;

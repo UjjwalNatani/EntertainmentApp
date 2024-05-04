@@ -25,7 +25,7 @@ export default function Trending() {
             <div className="movie-section-div">
                 {trendingList.map((trending, index) => (
                     <div key={index} className="movie-content-div">
-                        <Link href={`/${trending.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" /></Link>
+                        <Link href={`/${trending.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${trending.poster_path}`} alt="" height={400} width={400} /></Link>
                         <IconButton onClick={() => {
                             // Local storage handling
                             let bookmarked;

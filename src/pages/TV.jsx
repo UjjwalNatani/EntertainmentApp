@@ -25,7 +25,7 @@ export default function TV() {
             <div className="movie-section-div">
                 {tvList.map((tv, index) => (
                     <div key={index} className="movie-content-div">
-                        <Link href={`/${tv.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" /></Link>
+                        <Link href={`/${tv.id}`}><Image src={`https://image.tmdb.org/t/p/w500/${tv.poster_path}`} alt="" height={400} width={400} /></Link>
                         <IconButton style={{ position: 'absolute', top: '0', right: '0' }} color="primary" aria-label="bookmark" size="large" onClick={() => {
                             // Local storage handling
                             let bookmarked;
