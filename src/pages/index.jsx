@@ -23,7 +23,7 @@ export default function Login() {
     }
 
     try {
-      await axios.post(`${URL}`, {
+      await axios.post("https://entertainmentapp-1.onrender.com/", {
         email, password
       })
         .then(res => {
