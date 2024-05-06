@@ -6,26 +6,32 @@ import Link from "next/link";
 import Image from "next/image";
 
 export default function Home() {
-    const [movieList, setMovieList] = useState([]);
-    const [trendingList, setTrendingList] = useState([]);
-    const [tvList, setTvList] = useState([]);
+    const [movieList, setMovieList] = useState([]); // State for storing movie list
+    const [trendingList, setTrendingList] = useState([]); // State for storing trending list
+    const [tvList, setTvList] = useState([]); // State for storing TV series list
 
+    // Function to fetch movie list
     const getMovie = () => {
         fetch("https://api.themoviedb.org/3/discover/movie?api_key=2940b231da9ae329bd26aca2aefa5f2f")
             .then(res => res.json())
             .then(json => setMovieList(json.results));
     }
+
+    // Function to fetch trending list
     const getTrending = () => {
         fetch("https://api.themoviedb.org/3/trending/all/day?api_key=2940b231da9ae329bd26aca2aefa5f2f")
             .then(res => res.json())
             .then(json => setTrendingList(json.results));
     }
+
+    // Function to fetch TV series list
     const getTv = () => {
         fetch("https://api.themoviedb.org/3/discover/tv?api_key=2940b231da9ae329bd26aca2aefa5f2f")
             .then(res => res.json())
             .then(json => setTvList(json.results));
     }
 
+    // Fetch data when component mounts
     useEffect(() => {
         getMovie();
         getTv();
@@ -34,8 +40,8 @@ export default function Home() {
 
     return (
         <div className="main-div">
-            <Navbar />
-           <Link style={{textDecoration:'none'}} href='/Trending'> <h1 style={{  marginLeft:'20px' }}>Trending </h1>  </Link>
+            <Navbar /> {/* Render Navbar component */}
+            <Link style={{textDecoration:'none'}} href='/Trending'> <h1 style={{  marginLeft:'20px' }}>Trending </h1>  </Link>
             <div className="section-div">
                 {trendingList.map((trending, index) => (
                     <div key={index} className="content-div">
@@ -62,6 +68,7 @@ export default function Home() {
                             <BookmarkIcon />
                         </IconButton>
                         <div className="content-div-text">
+                            {/* Display item details */}
                             <p> {trending.original_title}
                                 {trending.original_name}</p>
                            <div style={{display:'flex'}}> {trending.release_date}  {trending.first_air_date} <span style={{ marginLeft: '70px' }}></span> {trending.media_type.toUpperCase()=="TV"?<div><span style={{ marginLeft: '15px' }}></span>TV<span style={{ marginLeft: '15px' }}></span></div>:trending.media_type.toUpperCase()} <span style={{ marginLeft: '70px' }}></span> {trending.original_language.toUpperCase()}

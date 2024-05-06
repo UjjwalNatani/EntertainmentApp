@@ -1,17 +1,22 @@
+// MongoDB connection URL
 const MONGO_URL = "mongodb+srv://ujjwalnatani10:Ugnatani@cluster0.ijnxryd.mongodb.net/?retryWrites=true&w=majority&appName=Cluster0"
+
+// Import mongoose library
 const mongoose = require("mongoose")
+
+// Connect to MongoDB database
 mongoose.connect(MONGO_URL, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
-    // mongoose.connect("mongodb://localhost:27017/entertainment_app")
     .then(() => {
-        console.log("mongodb connected");
+        console.log("mongodb connected"); // Log successful connection
     })
     .catch((e) => {
-        console.log('failed', e);
+        console.log('failed', e); // Log connection failure
     })
 
+// Define schema for user data
 const newSchema = new mongoose.Schema({
     name: {
         type: String,
@@ -27,6 +32,7 @@ const newSchema = new mongoose.Schema({
     }
 })
 
+// Create model for user data collection
 const collection = mongoose.model("user_data", newSchema)
 
-module.exports = collection
+module.exports = collection // Export model for external use
