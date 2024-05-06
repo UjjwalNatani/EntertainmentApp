@@ -66,3 +66,6 @@ Contributions are welcome! Please feel free to submit pull requests or open issu
 ---
 
 Feel free to customize this README with additional information specific to your project, such as installation instructions, usage examples, or project structure details.
+
+
+**Note:** Please be aware that the API used in this project may not work properly when accessed through Jio network provider due to potential restrictions or network configurations. If you encounter issues while using the application on Jio, consider trying a different network provider or troubleshooting with your network settings.
